@@ -1,0 +1,174 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>魔法编程 人工智能 深度学习 吃豆人</title>
+    <link rel="stylesheet" href="index.css">
+    <script type="text/javascript" src="material.min.js"></script>
+
+
+</head>
+<body>
+    <header>
+        魔法编程 <b>吃豆人</b> 人工智能 深度学习
+    </header>
+    <div id="no-webcam">
+        摄像头打不开.
+        <br> 请检查摄像头的设置.
+    </div>
+    <div id="pacman-container">
+        <div id="logo">
+            <div id="logo-l">
+                <div id="logo-b">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="status">正在加载中...</div>
+    <div class="controller-panels" id="controller" style="display:none">
+        <div class="panel training-panel">
+            <!-- Big buttons. -->
+            <div class="panel-row big-buttons">
+                <button id="train">
+                    <img width="66" height="66" src="index.svg">
+                    <span id="train-status">训练模型</span>
+                </button>
+                <button id="predict">
+                    <img width="66" height="66" src="index.svg">
+                    <span>开始游戏</span>
+                </button>
+            </div>
+            <div class="panel-row params-webcam-row">
+                <div class="hyper-params">
+                    <!-- Learning rate -->
+                    <div class="dropdown">
+                        <label>学习速度</label>
+                        <div class="select">
+                            <select id="learningRate">
+                                <option value="0.00001">0.00001</option>
+                                <option selected="" value="0.0001">0.0001</option>
+                                <option value="0.01">0.001</option>
+                                <option value="0.03">0.003</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- Batch size -->
+                    <div class="dropdown">
+                        <label>分块大小</label>
+                        <div class="select">
+                            <select id="batchSizeFraction">
+                                <option value="0.05">0.05</option>
+                                <option value="0.1">0.1</option>
+                                <option selected="" value="0.4">0.4</option>
+                                <option value="1">1</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- Epochs -->
+                    <div class="dropdown">
+                        <label>学习代数</label>
+                        <div class="select">
+                            <select id="epochs">
+                                <option value="10">10</option>
+                                <option selected="" value="20">20</option>
+                                <option value="40">40</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- Hidden units -->
+                    <div class="dropdown">
+                        <label>隐藏单元</label>
+                        <div class="select">
+                            <select id="dense-units">
+                                <option value="10">10</option>
+                                <option selected="" value="100">100</option>
+                                <option value="200">200</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="webcam-box-outer">
+                    <div class="webcam-box-inner">
+                        <video autoplay="" playsinline="" muted="" id="webcam" width="224" height="224"></video>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel joystick-panel">
+            <div class="panel-row panel-row-top panel-srow-top">
+                <div class="panel-cell panel-cell-left panel-cell-fill">
+                    <p class="help-text">点击图片<br>进行学习<br>预览效果<br>完成训练</p>
+                </div>
+                <div class="panel-cell panel-cell-center">
+                    <div class="thumb-box">
+                        <div class="thumb-box-outer">
+                            <div class="thumb-box-inner">
+                                <canvas class="thumb" width="224" height="224" id="up-thumb"></canvas>
+                            </div>
+                            <button class="record-button" id="up"><span>添加样本</span></button>
+                        </div>
+                        <p>
+                            <span id="up-total">0</span> 个样本
+                        </p>
+                    </div>
+                </div>
+                <div class="panel-cell panel-cell-right panel-cell-fill">
+                </div>
+            </div>
+            <div class="panel-row panel-row-middle">
+                <div class="panel-cell panel-cell-left">
+                    <div class="thumb-box">
+                        <div class="thumb-box-outer">
+                            <div class="thumb-box-inner">
+                                <canvas class="thumb" width="224" height="224" id="left-thumb"></canvas>
+                            </div>
+                            <button class="record-button" id="left"><span>添加样本</span></button>
+                        </div>
+                        <p>
+                            <span id="left-total">0</span> 个样本
+                        </p>
+                    </div>
+                </div>
+                <div class="panel-cell panel-cell-center panel-cell-fill">
+                    <img height="108" width="129" src="index.png">
+                </div>
+                <div class="panel-cell panel-cell-right">
+                    <div class="thumb-box">
+                        <div class="thumb-box-outer">
+                            <div class="thumb-box-inner">
+                                <canvas class="thumb" width="224" height="224" id="right-thumb"></canvas>
+                            </div>
+                            <button class="record-button" id="right"><span>添加样本</span></button>
+                        </div>
+                        <p>
+                            <span id="right-total">0</span> 个样本
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-row panel-row-bottom">
+                <div class="panel-cell panel-cell-left panel-cell-fill">
+                </div>
+                <div class="panel-cell panel-cell-center">
+                    <div class="thumb-box">
+                        <div class="thumb-box-outer">
+                            <div class="thumb-box-inner">
+                                <canvas class="thumb" width="224" height="224" id="down-thumb"></canvas>
+                            </div>
+                            <button class="record-button" id="down"><span>添加样本</span></button>
+                        </div>
+                        <p>
+                            <span id="down-total">0</span> 个样本
+                        </p>
+                    </div>
+                </div>
+                <div class="panel-cell panel-cell-right panel-cell-fill">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <p id="copyright">CopyRight ©2015-2018 XThinking Technology Ltd.</p> -->
+    <script type="text/javascript"  src="index.js"></script>
+    <script type="text/javascript" src="pacman.js"></script>
+</body>
+
+</html>
