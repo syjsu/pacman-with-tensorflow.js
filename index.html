@@ -1,14 +1,30 @@
 <!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
 <html>
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>魔法编程 人工智能 深度学习 吃豆人</title>
     <link rel="stylesheet" href="index.css">
     <script type="text/javascript" src="material.min.js"></script>
+    <script type="text/javascript">
+    var lastTouchEnd = 0;
+    document.documentElement.addEventListener('touchend', function(event) {
+        var now = Date.now();
+        if (now - lastTouchEnd <= 300) {
+            event.preventDefault();
+        }
+        lastTouchEnd = now;
+    }, false);
 
-
+    document.documentElement.addEventListener('touchstart', function(event) {
+        if (event.touches.length > 1) {
+            event.preventDefault();
+        }
+    }, false);
+    </script>
 </head>
+
 <body>
     <header>
         魔法编程 <b>吃豆人</b> 人工智能 深度学习
@@ -98,7 +114,10 @@
         <div class="panel joystick-panel">
             <div class="panel-row panel-row-top panel-srow-top">
                 <div class="panel-cell panel-cell-left panel-cell-fill">
-                    <p class="help-text">点击图片<br>进行学习<br>预览效果<br>完成训练</p>
+                    <p class="help-text">点击图片
+                        <br>进行学习
+                        <br>预览效果
+                        <br>完成训练</p>
                 </div>
                 <div class="panel-cell panel-cell-center">
                     <div class="thumb-box">
@@ -169,7 +188,7 @@
         </div>
     </div>
     <!-- <p id="copyright">CopyRight ©2015-2018 XThinking Technology Ltd.</p> -->
-    <script type="text/javascript"  src="index.js"></script>
+    <script type="text/javascript" src="index.js"></script>
     <script type="text/javascript" src="pacman.js"></script>
 </body>
 
